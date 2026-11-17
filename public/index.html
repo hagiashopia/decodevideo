@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Decode</title>
+<style>
+:root{--bg:#f3f5f7;--ink:#14202b;--mu:#5d6b78;--ln:#d5dce2;--ac:#1f6f8b;--on:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#10161c;--ink:#e6edf3;--mu:#8a98a6;--ln:#26323d;--ac:#5bb4d6;--on:#0b1a22}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:0 auto;padding:28px 16px 48px}
+h1{font-size:26px;letter-spacing:-.02em;margin:0 0 4px}
+.sub{color:var(--mu);margin:0 0 24px}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:end;margin-bottom:14px}
+label{display:grid;gap:4px;font-size:13px;color:var(--mu)}
+input{font:inherit;color:var(--ink);padding:8px 10px;border:1px solid var(--ln);border-radius:6px;background:transparent}
+input:focus-visible,button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button{font:inherit;font-weight:600;padding:9px 16px;border:0;border-radius:6px;background:var(--ac);color:var(--on);cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+#st{min-height:1.5em;color:var(--mu);margin:6px 0 0}
+#grid{display:flex;gap:6px;overflow-x:auto;padding:12px;margin-top:14px;background:#0c1116;border-radius:4px}
+#grid figure{margin:0;flex:0 0 180px;font-size:12px;color:#9fb0bf;font-variant-numeric:tabular-nums}
+#grid img{width:100%;display:block;margin-bottom:4px}
+</style></head><body><main>
+<h1>Video Decode</h1>
+<p class="sub">Pecah video animasi per adegan, lalu ekspor storyboard lengkap sebagai ZIP.</p>
+<div class="row">
+ <label>Video<input type="file" id="file" accept="video/*"></label>
+ <label>Sensitivitas (kecil = lebih peka)<input type="range" id="th" min="5" max="50" value="18"></label>
+ <label>Durasi adegan minimum (detik)<input type="number" id="min" value="1" min="0.5" step="0.5" style="width:90px"></label>
+ <button id="go1">Deteksi adegan</button>
+</div>
+<div class="row">
+ <label>Kata sandi akses (kosong = ZIP untuk dianalisis di chat Claude)<input type="password" id="pw"></label>
+ <label>Nada narasi<input id="tone" value="santai dan informatif"></label>
+ <button id="go2" disabled>Ekspor ZIP</button>
+</div>
+<p id="st" aria-live="polite"></p>
+<div id="grid"></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="app.js"></script>
+</body></html>
